@@ -1,0 +1,2370 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="XochiFlores - Flores artesanales de la más alta calidad. Envíos same day en CDMX y área metropolitana.">
+    <title>XochiFlores | Flores Premium en México</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #CE6BF0;
+            --primary-dark: #b95ad8;
+            --primary-light: #E9A8F4;
+            --primary-lighter: #F4D9FA;
+            --secondary: #D982F0;
+            --white: #FFFFFF;
+            --black: #1A1A1A;
+            --gray: #6D6D6D;
+            --light-gray: #F5F5F5;
+            --success: #4CAF50;
+            --danger: #F44336;
+            --warning: #FFC107;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            color: var(--black);
+            line-height: 1;
+        }
+
+        .logo-subtext {
+            font-size: 10px;
+            color: var(--gray);
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .user-icon {
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--black);
+            transition: var(--transition);
+        }
+
+        .user-icon:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        /* Login Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-modal.active {
+            display: flex;
+        }
+
+        .login-container {
+            background-color: var(--white);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .login-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .login-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .login-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .login-form input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px var(--primary-lighter);
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .login-button {
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+
+        .login-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .login-divider {
+            text-align: center;
+            position: relative;
+            margin: 20px 0;
+            color: var(--gray);
+        }
+
+        .login-divider:before,
+        .login-divider:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background-color: #eee;
+        }
+
+        .login-divider:before {
+            left: 0;
+        }
+
+        .login-divider:after {
+            right: 0;
+        }
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .social-login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .social-login-btn.google {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            color: var(--black);
+        }
+
+        .social-login-btn.facebook {
+            background-color: #1877F2;
+            color: white;
+            border: none;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gray);
+        }
+
+        .register-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background-color: var(--primary-lighter);
+            padding: 15px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .welcome-text {
+            font-size: 16px;
+            color: var(--black);
+        }
+
+        .welcome-text a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-lighter) 0%, var(--white) 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 72px;
+            color: var(--black);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            animation: pulse 2s infinite;
+            min-height: 60px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            animation: none;
+        }
+
+        .hero-image {
+            max-width: 600px;
+            margin: 60px auto 0;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: var(--black);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .feature-text {
+            color: var(--gray);
+            font-size: 16px;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background-color: var(--light-gray);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .product-rating {
+            color: var(--warning);
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Product Detail Section */
+        .product-detail {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .product-detail.active {
+            display: block;
+        }
+
+        .detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .detail-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 3;
+            border: none;
+        }
+
+        .detail-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .detail-content {
+                flex-direction: row;
+            }
+        }
+
+        .detail-images {
+            flex: 1;
+            position: relative;
+        }
+
+        .detail-main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .detail-thumbnails {
+            display: flex;
+            padding: 15px;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .detail-thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .detail-thumbnail:hover, .detail-thumbnail.active {
+            border-color: var(--primary);
+        }
+
+        .detail-info {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .detail-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .detail-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .detail-rating {
+            color: var(--warning);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .detail-description {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .detail-features {
+            margin-bottom: 25px;
+        }
+
+        .detail-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .detail-feature i {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .detail-quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 15px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background-color: #f5f5f5;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .detail-add-to-cart {
+            flex: 2;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .detail-add-to-cart:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .detail-wishlist {
+            flex: 1;
+            background-color: var(--white);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .detail-wishlist:hover {
+            background-color: var(--primary-lighter);
+        }
+
+        /* Cart Section */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 3000;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item-quantity button {
+            width: 25px;
+            height: 25px;
+            background-color: var(--primary-light);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-quantity input {
+            width: 40px;
+            text-align: center;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 2px;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            background-color: var(--light-gray);
+        }
+
+        .cart-subtotal {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .cart-checkout {
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cart-checkout:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .cart-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .cart-empty-icon {
+            font-size: 60px;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+        }
+
+        .cart-empty-text {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 30px;
+            padding: 20px 0;
+            scrollbar-width: none;
+        }
+
+        .testimonial-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            min-width: 350px;
+            background-color: var(--light-gray);
+            border-radius: 15px;
+            padding: 30px;
+            scroll-snap-align: start;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--gray);
+            position: relative;
+        }
+
+        .testimonial-text:before,
+        .testimonial-text:after {
+            content: '"';
+            font-size: 40px;
+            color: var(--primary-light);
+            position: absolute;
+        }
+
+        .testimonial-text:before {
+            top: -15px;
+            left: -10px;
+        }
+
+        .testimonial-text:after {
+            bottom: -35px;
+            right: -10px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .author-info h4 {
+            color: var(--black);
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cta-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .footer-text {
+            color: #AAAAAA;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            color: var(--primary);
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+            bottom: -8px;
+            left: 0;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #AAAAAA;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-newsletter input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .footer-newsletter button {
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .footer-newsletter button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #333333;
+            color: #777777;
+            font-size: 14px;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Added to cart message */
+        .added-to-cart-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--success);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 4000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .added-to-cart-message.show {
+            opacity: 1;
+        }
+
+        .message-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 60px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+
+            .detail-content {
+                flex-direction: column;
+            }
+
+            .detail-actions {
+                flex-direction: column;
+            }
+
+            .detail-add-to-cart, .detail-wishlist {
+                width: 100%;
+            }
+
+            .cart-sidebar {
+                max-width: 100%;
+            }
+
+            .welcome-banner {
+                margin-top: 70px;
+                padding: 10px 0;
+            }
+
+            .welcome-text {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            
+            .cta-button {
+                font-size: 16px;
+                padding: 14px 30px;
+            }
+            
+            .feature-card {
+                padding: 20px;
+            }
+            
+            .feature-title {
+                font-size: 20px;
+            }
+
+            .cart-item {
+                flex-direction: column;
+            }
+
+            .cart-item-image {
+                width: 100%;
+                height: auto;
+                margin-bottom: 15px;
+            }
+
+            .login-container {
+                padding: 20px;
+                margin: 0 15px;
+            }
+
+            .login-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Modal -->
+    <div class="login-modal" id="login-modal">
+        <div class="login-container">
+            <button class="login-close" id="login-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="login-title">Iniciar Sesión</h2>
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <div class="login-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Recordarme</label>
+                    </div>
+                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit" class="login-button">Iniciar Sesión</button>
+                <div class="login-divider">o</div>
+                <div class="social-login">
+                    <button type="button" class="social-login-btn google">
+                        <i class="fab fa-google"></i> Continuar con Google
+                    </button>
+                    <button type="button" class="social-login-btn facebook">
+                        <i class="fab fa-facebook-f"></i> Continuar con Facebook
+                    </button>
+                </div>
+                <div class="register-link">
+                    ¿No tienes una cuenta? <a href="#">Regístrate aquí</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">🌸</div>
+                <div>
+                    <div class="logo-text">XochiFlores</div>
+                    <div class="logo-subtext">FLORERÍA ARTESANAL</div>
+                </div>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#productos" class="nav-link">Productos</a>
+                <a href="#nosotros" class="nav-link">Nosotros</a>
+                <a href="#testimonios" class="nav-link">Testimonios</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+                <div class="user-icon" id="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="cart-icon" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+        <p class="welcome-text">¡Bienvenido a XochiFlores! <a href="#" id="login-link">Inicia sesión</a> para acceder a descuentos exclusivos.</p>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <h1 class="hero-title">Flores que inspiran emociones</h1>
+            <p class="hero-subtitle">Descubre nuestra colección premium de arreglos florales artesanales, diseñados para convertir momentos ordinarios en extraordinarios.</p>
+            <button class="cta-button" id="main-cta">
+                <i class="fas fa-shopping-cart"></i> COMPRAR AHORA
+            </button>
+            
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1526397751294-331021109fbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Arreglo floral premium de XochiFlores">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">¿Por qué elegir XochiFlores?</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3 class="feature-title">Calidad Premium</h3>
+                <p class="feature-text">Trabajamos solo con las flores más frescas y de la más alta calidad para garantizar durabilidad y belleza.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3 class="feature-title">Envío Same Day</h3>
+                <p class="feature-text">Entregamos el mismo día en CDMX y área metropolitana con nuestro servicio especializado de mensajería.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3 class="feature-title">Diseño Artesanal</h3>
+                <p class="feature-text">Cada arreglo es creado a mano por nuestros talentosos floristas con atención al más mínimo detalle.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="productos">
+        <h2 class="section-title">Nuestros Productos Destacados</h2>
+        
+        <div class="products-grid">
+            <div class="product-card" data-product="1">
+                <span class="product-badge">MÁS VENDIDO</span>
+                <img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80" alt="Ramo de rosas premium" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Ramo Elegance</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="product-price">$1,250.00 MXN</div>
+                    <button class="add-to-cart" data-id="1" data-name="Ramo Elegance" data-price="1250" data-image="https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80">
+                        <i class="fas fa-cart-plus"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-product="2">
+                <img src="https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Arreglo floral para bodas" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Boda Clásica</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="product-price">$2,800.00 MXN</div>
+                    <button class="add-to-cart" data-id="2" data-name="Boda Clásica" data-price="2800" data-image="https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+                        <i class="fas fa-cart-plus"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-product="3">
+                <span class="product-badge">NUEVO</span>
+                <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Centro de mesa floral" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Centro Primavera</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="product-price">$1,750.00 MXN</div>
+                    <button class="add-to-cart" data-id="3" data-name="Centro Primavera" data-price="1750" data-image="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+                        <i class="fas fa-cart-plus"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product="4">
+                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ramo de flores variadas" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Jardín Encantado</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="product-price">$1,950.00 MXN</div>
+                    <button class="add-to-cart" data-id="4" data-name="Jardín Encantado" data-price="1950" data-image="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+                        <i class="fas fa-cart-plus"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Sections -->
+    <div class="product-detail" id="product-detail-1">
+        <div class="detail-container">
+            <button class="detail-close"><i class="fas fa-times"></i></button>
+            <div class="detail-content">
+                <div class="detail-images">
+                    <img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80" alt="Ramo de rosas premium" class="detail-main-image">
+                    <div class="detail-thumbnails">
+                        <img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80" alt="Miniatura 1" class="detail-thumbnail active">
+                        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Miniatura 2" class="detail-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Miniatura 3" class="detail-thumbnail">
+                    </div>
+                </div>
+                <div class="detail-info">
+                    <h1 class="detail-title">Ramo Elegance</h1>
+                    <div class="detail-price">$1,250.00 MXN</div>
+                    <div class="detail-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(128 reseñas)</span>
+                    </div>
+                    <p class="detail-description">
+                        El ramo Elegance es nuestra creación más emblemática, compuesto por 24 rosas rojas premium de tallo largo, acompañadas de delicado follaje verde. Cada rosa es seleccionada por su tamaño perfecto y tonalidad vibrante, simbolizando amor profundo y pasión intensa.
+                    </p>
+                    <div class="detail-features">
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Incluye tarjeta personalizada con mensaje</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Empaque premium con cinta de satín</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Guía de cuidado floral incluida</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Duración garantizada: 7-10 días</span>
+                        </div>
+                    </div>
+                    <div class="detail-quantity">
+                        <span>Cantidad:</span>
+                        <div class="quantity-control">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="detail-actions">
+                        <button class="detail-add-to-cart" data-id="1" data-name="Ramo Elegance" data-price="1250" data-image="https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80">
+                            <i class="fas fa-cart-plus"></i> Añadir al carrito - $1,250.00
+                        </button>
+                        <button class="detail-wishlist">
+                            <i class="far fa-heart"></i> Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-detail" id="product-detail-2">
+        <div class="detail-container">
+            <button class="detail-close"><i class="fas fa-times"></i></button>
+            <div class="detail-content">
+                <div class="detail-images">
+                    <img src="https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Arreglo floral para bodas" class="detail-main-image">
+                    <div class="detail-thumbnails">
+                        <img src="https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Miniatura 1" class="detail-thumbnail active">
+                        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Miniatura 2" class="detail-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Miniatura 3" class="detail-thumbnail">
+                    </div>
+                </div>
+                <div class="detail-info">
+                    <h1 class="detail-title">Boda Clásica</h1>
+                    <div class="detail-price">$2,800.00 MXN</div>
+                    <div class="detail-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(86 reseñas)</span>
+                    </div>
+                    <p class="detail-description">
+                        El arreglo Boda Clásica está diseñado especialmente para ceremonias nupciales, compuesto por rosas blancas, liliums y flores de temporada. Este elegante arreglo simboliza pureza, amor eterno y nuevos comienzos, perfecto para iluminar el día más especial.
+                    </p>
+                    <div class="detail-features">
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Incluye tarjeta personalizada con mensaje</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Empaque especial para bodas</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Guía de cuidado floral incluida</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Duración garantizada: 5-7 días</span>
+                        </div>
+                    </div>
+                    <div class="detail-quantity">
+                        <span>Cantidad:</span>
+                        <div class="quantity-control">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="detail-actions">
+                        <button class="detail-add-to-cart" data-id="2" data-name="Boda Clásica" data-price="2800" data-image="https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+                            <i class="fas fa-cart-plus"></i> Añadir al carrito - $2,800.00
+                        </button>
+                        <button class="detail-wishlist">
+                            <i class="far fa-heart"></i> Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-detail" id="product-detail-3">
+        <div class="detail-container">
+            <button class="detail-close"><i class="fas fa-times"></i></button>
+            <div class="detail-content">
+                <div class="detail-images">
+                    <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Centro de mesa floral" class="detail-main-image">
+                    <div class="detail-thumbnails">
+                        <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Miniatura 1" class="detail-thumbnail active">
+                        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Miniatura 2" class="detail-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Miniatura 3" class="detail-thumbnail">
+                    </div>
+                </div>
+                <div class="detail-info">
+                    <h1 class="detail-title">Centro Primavera</h1>
+                    <div class="detail-price">$1,750.00 MXN</div>
+                    <div class="detail-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(94 reseñas)</span>
+                    </div>
+                    <p class="detail-description">
+                        El Centro Primavera es una vibrante combinación de flores de temporada en tonos pastel, perfecto para decorar cualquier espacio. Este arreglo incluye peonías, rosas inglesas y flores de relleno, creando un look fresco y natural ideal para eventos o para alegrar tu hogar.
+                    </p>
+                    <div class="detail-features">
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Incluye base decorativa de madera</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Empaque especial para centros de mesa</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Guía de cuidado floral incluida</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Duración garantizada: 8-12 días</span>
+                        </div>
+                    </div>
+                    <div class="detail-quantity">
+                        <span>Cantidad:</span>
+                        <div class="quantity-control">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="detail-actions">
+                        <button class="detail-add-to-cart" data-id="3" data-name="Centro Primavera" data-price="1750" data-image="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+                            <i class="fas fa-cart-plus"></i> Añadir al carrito - $1,750.00
+                        </button>
+                        <button class="detail-wishlist">
+                            <i class="far fa-heart"></i> Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-detail" id="product-detail-4">
+        <div class="detail-container">
+            <button class="detail-close"><i class="fas fa-times"></i></button>
+            <div class="detail-content">
+                <div class="detail-images">
+                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ramo de flores variadas" class="detail-main-image">
+                    <div class="detail-thumbnails">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Miniatura 1" class="detail-thumbnail active">
+                        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Miniatura 2" class="detail-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80" alt="Miniatura 3" class="detail-thumbnail">
+                    </div>
+                </div>
+                <div class="detail-info">
+                    <h1 class="detail-title">Jardín Encantado</h1>
+                    <div class="detail-price">$1,950.00 MXN</div>
+                    <div class="detail-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(76 reseñas)</span>
+                    </div>
+                    <p class="detail-description">
+                        El ramo Jardín Encantado es una mezcla de flores silvestres y rosas de jardín, creando un look romántico y natural. Este arreglo incluye una variedad de texturas y colores, perfecto para aquellos que buscan algo único y especial que capture la belleza de un jardín en flor.
+                    </p>
+                    <div class="detail-features">
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Incluye tarjeta personalizada con mensaje</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Empaque en papel kraft premium</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Guía de cuidado floral incluida</span>
+                        </div>
+                        <div class="detail-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Duración garantizada: 10-14 días</span>
+                        </div>
+                    </div>
+                    <div class="detail-quantity">
+                        <span>Cantidad:</span>
+                        <div class="quantity-control">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="detail-actions">
+                        <button class="detail-add-to-cart" data-id="4" data-name="Jardín Encantado" data-price="1950" data-image="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+                            <i class="fas fa-cart-plus"></i> Añadir al carrito - $1,950.00
+                        </button>
+                        <button class="detail-wishlist">
+                            <i class="far fa-heart"></i> Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="overlay" id="overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Tu Carrito</h3>
+            <button class="cart-close" id="cart-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <div class="cart-empty">
+                <div class="cart-empty-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="cart-empty-text">Tu carrito está vacío</div>
+                <button class="btn" onclick="closeCart()">Seguir comprando</button>
+            </div>
+        </div>
+        <div class="cart-footer" id="cart-footer" style="display: none;">
+            <div class="cart-subtotal">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">$0.00</span>
+            </div>
+            <button class="cart-checkout" id="cart-checkout">
+                <i class="fas fa-credit-card"></i> Proceder al pago
+            </button>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonios">
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        
+        <div class="testimonials-container">
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Las flores que recibí de XochiFlores fueron absolutamente impresionantes. Duraron más de dos semanas y recibí numerosos cumplidos. Definitivamente volveré a ordenar.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="María González" class="author-avatar">
+                        <div class="author-info">
+                            <h4>María González</h4>
+                            <p>Ciudad de México</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">El servicio same day salvó mi aniversario. Olvidé comprar flores y XochiFlores entregó un hermoso arreglo en menos de 2 horas. ¡Mi esposa quedó encantada!</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Mendoza" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Carlos Mendoza</h4>
+                            <p>Estado de México</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Usamos XochiFlores para nuestra boda y fue la mejor decisión. Las floristas entendieron perfectamente nuestra visión y crearon arreglos más hermosos de lo que imaginamos.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana y Luis" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Ana y Luis</h4>
+                            <p>Pareja de novios</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Como diseñadora de eventos, trabajo con muchas florerías. XochiFlores destaca por su calidad consistente, atención al detalle y profesionalismo. Mis clientes siempre quedan satisfechos.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Patricia Núñez" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Patricia Núñez</h4>
+                            <p>Diseñadora de eventos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">¿Listo para llevar belleza a tu vida?</h2>
+            <p class="cta-text">Regala emociones con nuestros arreglos florales premium. Envío same day disponible en CDMX y área metropolitana.</p>
+            <button class="cta-button" id="cta-button">
+                <i class="fas fa-gift"></i> COMPRAR AHORA
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <div class="footer-logo-text">XochiFlores</div>
+                <p class="footer-text">Flores artesanales de la más alta calidad. Envíos same day en CDMX y área metropolitana.</p>
+                
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Av. Paseo de la Reforma 123, CDMX</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>55 1234 5678</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>hola@xochiflores.com</span>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Categorías</h3>
+                <ul>
+                    <li><a href="#">Ramos</a></li>
+                    <li><a href="#">Arreglos</a></li>
+                    <li><a href="#">Centros de mesa</a></li>
+                    <li><a href="#">Bodas</a></li>
+                    <li><a href="#">Eventos especiales</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-newsletter">
+                <h3>Newsletter</h3>
+                <p class="footer-text">Suscríbete para recibir promociones exclusivas y novedades.</p>
+                <input type="email" placeholder="Tu correo electrónico">
+                <button type="submit">Suscribirse</button>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 XochiFlores. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Added to cart message -->
+    <div class="added-to-cart-message" id="added-to-cart-message">
+        <div class="message-content">
+            <i class="fas fa-check-circle"></i>
+            <span>Producto añadido al carrito</span>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Login modal
+        const loginModal = document.getElementById('login-modal');
+        const loginLink = document.getElementById('login-link');
+        const userIcon = document.getElementById('user-icon');
+        const loginClose = document.getElementById('login-close');
+        
+        function toggleLoginModal() {
+            loginModal.classList.toggle('active');
+        }
+        
+        loginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleLoginModal();
+        });
+        
+        userIcon.addEventListener('click', toggleLoginModal);
+        loginClose.addEventListener('click', toggleLoginModal);
+        
+        // Close modal when clicking outside
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                toggleLoginModal();
+            }
+        });
+        
+        // Cart functionality
+        const cartIcon = document.getElementById('cart-icon');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartClose = document.getElementById('cart-close');
+        const overlay = document.getElementById('overlay');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartFooter = document.getElementById('cart-footer');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartCheckout = document.getElementById('cart-checkout');
+        const cartCount = document.querySelector('.cart-count');
+        const addedToCartMessage = document.getElementById('added-to-cart-message');
+        
+        let cart = [];
+        
+        function toggleCart() {
+            cartSidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = cartSidebar.classList.contains('active') ? 'hidden' : 'auto';
+        }
+        
+        function closeCart() {
+            cartSidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        cartIcon.addEventListener('click', toggleCart);
+        cartClose.addEventListener('click', closeCart);
+        overlay.addEventListener('click', closeCart);
+        
+        // Add to cart functionality
+        function addToCart(productId, productName, productPrice, productImage, quantity = 1) {
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: quantity
+                });
+            }
+            
+            updateCart();
+            showAddedToCartMessage();
+        }
+        
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="cart-empty">
+                        <div class="cart-empty-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="cart-empty-text">Tu carrito está vacío</div>
+                        <button class="btn" onclick="closeCart()">Seguir comprando</button>
+                    </div>
+                `;
+                cartFooter.style.display = 'none';
+            } else {
+                cartItemsContainer.innerHTML = '';
+                cart.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.name}</h4>
+                            <div class="cart-item-price">$${(item.price * item.quantity).toLocaleString('es-MX')}.00 MXN</div>
+                            <div class="cart-item-quantity">
+                                <button class="decrease-quantity" data-id="${item.id}">-</button>
+                                <input type="number" value="${item.quantity}" min="1" class="quantity-input" data-id="${item.id}">
+                                <button class="increase-quantity" data-id="${item.id}">+</button>
+                                <button class="cart-item-remove" data-id="${item.id}">Eliminar</button>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+                
+                // Update subtotal
+                const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                cartSubtotal.textContent = `$${subtotal.toLocaleString('es-MX')}.00 MXN`;
+                cartFooter.style.display = 'block';
+            }
+            
+            // Add event listeners to quantity controls
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = e.target.getAttribute('data-id');
+                    updateQuantity(productId, -1);
+                });
+            });
+            
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = e.target.getAttribute('data-id');
+                    updateQuantity(productId, 1);
+                });
+            });
+            
+            document.querySelectorAll('.cart-item-remove').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = e.target.getAttribute('data-id');
+                    removeFromCart(productId);
+                });
+            });
+            
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', (e) => {
+                    const productId = e.target.getAttribute('data-id');
+                    const newQuantity = parseInt(e.target.value);
+                    setQuantity(productId, newQuantity);
+                });
+            });
+        }
+        
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity < 1) item.quantity = 1;
+                updateCart();
+            }
+        }
+        
+        function setQuantity(productId, quantity) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity = quantity >= 1 ? quantity : 1;
+                updateCart();
+            }
+        }
+        
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+        
+        function showAddedToCartMessage() {
+            addedToCartMessage.classList.add('show');
+            setTimeout(() => {
+                addedToCartMessage.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Add to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productId = button.getAttribute('data-id');
+                const productName = button.getAttribute('data-name');
+                const productPrice = parseFloat(button.getAttribute('data-price'));
+                const productImage = button.getAttribute('data-image');
+                
+                addToCart(productId, productName, productPrice, productImage);
+            });
+        });
+        
+        // Product detail add to cart buttons
+        document.querySelectorAll('.detail-add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productId = button.getAttribute('data-id');
+                const productName = button.getAttribute('data-name');
+                const productPrice = parseFloat(button.getAttribute('data-price'));
+                const productImage = button.getAttribute('data-image');
+                const quantity = parseInt(document.querySelector(`#product-detail-${productId} .quantity-input`).value);
+                
+                addToCart(productId, productName, productPrice, productImage, quantity);
+                closeProductDetail();
+            });
+        });
+        
+        // Checkout button
+        cartCheckout.addEventListener('click', () => {
+            alert('Procesando pago... (esto es una demostración)');
+            cart = [];
+            updateCart();
+            closeCart();
+        });
+        
+        // Product detail functionality
+        const productCards = document.querySelectorAll('.product-card');
+        const productDetails = document.querySelectorAll('.product-detail');
+        const detailCloseButtons = document.querySelectorAll('.detail-close');
+        
+        productCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't open detail if clicking on add to cart button
+                if (e.target.closest('.add-to-cart')) return;
+                
+                const productId = card.getAttribute('data-product');
+                openProductDetail(productId);
+            });
+        });
+        
+        function openProductDetail(productId) {
+            const detail = document.getElementById(`product-detail-${productId}`);
+            detail.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeProductDetail() {
+            productDetails.forEach(detail => {
+                detail.classList.remove('active');
+            });
+            document.body.style.overflow = 'auto';
+        }
+        
+        detailCloseButtons.forEach(button => {
+            button.addEventListener('click', closeProductDetail);
+        });
+        
+        // Thumbnail click functionality
+        document.querySelectorAll('.detail-thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', () => {
+                const mainImage = thumbnail.closest('.detail-images').querySelector('.detail-main-image');
+                mainImage.src = thumbnail.src;
+                
+                // Update active thumbnail
+                thumbnail.closest('.detail-thumbnails').querySelectorAll('.detail-thumbnail').forEach(t => {
+                    t.classList.remove('active');
+                });
+                thumbnail.classList.add('active');
+            });
+        });
+        
+        // Quantity controls in product detail
+        document.querySelectorAll('.quantity-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const input = button.parentElement.querySelector('.quantity-input');
+                let value = parseInt(input.value);
+                
+                if (button.classList.contains('minus') && value > 1) {
+                    input.value = value - 1;
+                } else if (button.classList.contains('plus')) {
+                    input.value = value + 1;
+                }
+            });
+        });
+        
+        // CTA buttons
+        const mainCta = document.getElementById('main-cta');
+        const ctaButton = document.getElementById('cta-button');
+        
+        function scrollToProducts() {
+            document.getElementById('productos').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        mainCta.addEventListener('click', scrollToProducts);
+        ctaButton.addEventListener('click', scrollToProducts);
+        
+        // Initialize cart
+        updateCart();
+    </script>
+</body>
+</html>
